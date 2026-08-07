@@ -1,135 +1,205 @@
-# 🤖 AI Resume Screening & Candidate Ranking System
+🤖 AI Resume Screening & Candidate Ranking System
 
-A **fully-featured AI-powered Resume Screening & Candidate Ranking Application** built using **Streamlit**, **Scikit-learn**, **NLTK**, **pdfplumber**, **PyPDF**, **python-docx**, and **Plotly**. The application automates resume screening by extracting candidate information, matching resumes against job descriptions, ranking applicants, and providing interactive analytics.
+An AI-powered Resume Screening & Candidate Ranking System that automates candidate evaluation by extracting resume information, analyzing job relevance, and ranking applicants using Natural Language Processing (NLP) and Machine Learning techniques.
 
----
+Built with Streamlit, Scikit-learn, Plotly, and advanced document parsing libraries, the application enables recruiters to efficiently process multiple resumes, identify the most suitable candidates, and visualize hiring insights through an interactive dashboard.
 
-# 📌 Project Overview
+📌 Project Overview
 
-The AI Resume Screening System is designed to simplify the recruitment process by automatically analyzing resumes, extracting important candidate information, calculating job relevance scores, and ranking candidates based on AI-powered matching algorithms.
+The AI Resume Screening System streamlines the recruitment process by automatically parsing resumes, extracting candidate information, comparing resumes with job descriptions, and generating intelligent candidate rankings.
 
-The application supports bulk resume uploads, multiple document formats, NLP-based entity extraction, TF-IDF similarity scoring, skill gap analysis, and interactive dashboards for HR professionals.
+The application supports multiple resume formats, performs TF-IDF-based semantic matching, identifies skill gaps, and provides interactive analytics for data-driven hiring decisions.
 
----
+✨ Key Features
+Bulk Resume Processing supporting PDF, DOCX, and TXT files
+Dual PDF Parsing Engine using pdfplumber with PyPDF fallback
+NLP-based Entity Extraction for candidate information
+AI Resume Ranking using TF-IDF Vectorization and Cosine Similarity
+Skill Gap Analysis with matched, missing, and additional skills
+Composite Candidate Scoring using configurable weighted metrics
+Interactive Candidate Dashboard with detailed profile insights
+Analytics Dashboard powered by Plotly visualizations
+CSV & JSON Export for screening reports
+🛠 Technology Stack
+Category	Technologies
+Frontend	Streamlit
+Machine Learning	Scikit-learn, NLTK
+NLP	Regular Expressions, TF-IDF, Cosine Similarity
+Document Processing	pdfplumber, PyPDF, python-docx
+Data Processing	Pandas, NumPy
+Visualization	Plotly
+Export	CSV, JSON
+🏗 System Architecture
+                  Resume Upload
+                        │
+                        ▼
+          Multi-format Document Parser
+      (PDF • DOCX • TXT Extraction)
+                        │
+                        ▼
+             NLP Entity Extraction
+                        │
+                        ▼
+         Candidate Information Database
+                        │
+                        ▼
+         Job Description Processing
+                        │
+                        ▼
+          TF-IDF Vectorization Engine
+                        │
+                        ▼
+         Cosine Similarity Calculation
+                        │
+                        ▼
+      Skill Gap & Experience Evaluation
+                        │
+                        ▼
+      Weighted Composite Score Engine
+                        │
+                        ▼
+          Candidate Ranking Module
+                        │
+                        ▼
+      Analytics Dashboard & Export
+📂 Project Structure
+AI-Resume-Screening/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── test_app.py
+│
+├── sample_resumes/
+│   ├── john_smith_data_scientist.txt
+│   ├── priya_sharma_fullstack.txt
+│   └── alex_johnson_ml_junior.txt
+│
+└── utils/
+    ├── parser.py
+    ├── extractor.py
+    ├── scorer.py
+    └── visualizer.py
+📑 Module Description
+app.py
 
-# 🛠️ Tech Stack
+The main Streamlit application responsible for managing the complete workflow, including resume uploads, job description input, candidate evaluation, analytics visualization, and report generation.
 
-| Category | Technologies |
-|----------|--------------|
-| **Frontend** | Streamlit, HTML, CSS |
-| **Machine Learning** | Scikit-learn, NLTK |
-| **Document Parsing** | pdfplumber, PyPDF, python-docx |
-| **Data Processing** | Pandas, NumPy |
-| **Visualization** | Plotly |
-| **Storage & Export** | CSV, JSON |
+parser.py
 
----
+Implements a robust document parsing engine capable of extracting textual information from multiple document formats.
 
-# ✨ Features
+Responsibilities
 
-- 📤 Bulk Resume Upload (PDF, DOCX, TXT)
-- 📄 Dual PDF Parsing (pdfplumber + PyPDF fallback)
-- 🧠 NLP-based Candidate Information Extraction
-- 🤖 TF-IDF & Cosine Similarity Resume Scoring
-- 🎯 Skill Gap Analysis
-- 🏆 Candidate Ranking System
-- 👤 Detailed Candidate Profile Viewer
-- 📊 Interactive Analytics Dashboard
-- 💾 Export Results to CSV & JSON
+PDF parsing using pdfplumber
+PyPDF fallback parser
+DOCX parser
+TXT parser
+extractor.py
 
----
+Performs NLP-based information extraction from resumes.
 
-# 📋 Functional Modules
+Extracted Information
+Candidate Name
+Email Address
+Phone Number
+LinkedIn Profile
+GitHub Profile
+Education
+Technical Skills
+Soft Skills
+Experience
+Projects
+Professional Summary
+scorer.py
 
-## 📤 Resume Upload
+Implements the AI scoring pipeline.
 
-- Upload multiple resumes simultaneously
-- Supports PDF, DOCX, and TXT formats
-- Preview uploaded candidate resumes
+Core Functions
+TF-IDF Vectorization
+Cosine Similarity Matching
+Skill Match Calculation
+Experience Evaluation
+Composite Score Generation
+Candidate Ranking
+visualizer.py
 
----
+Generates interactive analytics using Plotly.
 
-## 📄 Resume Parser
+Available Visualizations
+Candidate Ranking
+Score Distribution
+Skill Frequency Analysis
+Skill Gap Sunburst
+Experience Distribution
+Candidate Radar Comparison
+🎯 Candidate Scoring Methodology
 
-The parser extracts text from different document formats.
+The application evaluates each resume using a weighted scoring model.
 
-### Supported Formats
+Component	Weight
+Content Similarity (TF-IDF)	50%
+Skill Matching	40%
+Experience Match	10%
+Composite Score
+Score=(0.50×Content Match)+(0.40×Skill Match)+(0.10×Experience Match)
+📊 Analytics
 
-- PDF
-- DOCX
-- TXT
+The application provides comprehensive hiring analytics, including:
 
-### PDF Parsing
+Candidate Score Distribution
+Resume Ranking Leaderboard
+Skill Frequency Analysis
+Skill Gap Visualization
+Experience Distribution
+Candidate Performance Comparison
+🚀 Installation
+git clone <repository-url>
 
-- Primary Engine: **pdfplumber**
-- Fallback Engine: **PyPDF**
+cd AI-Resume-Screening
 
----
+pip install -r requirements.txt
 
-## 🧠 NLP Entity Extraction
+streamlit run app.py
+🧪 Testing
 
-Automatically extracts:
+Execute the test suite using:
 
-- Candidate Name
-- Email Address
-- Phone Number
-- LinkedIn Profile
-- GitHub Profile
-- Technical Skills
-- Soft Skills
-- Education Details
-- Experience
-- Projects
-- Professional Summary
+python test_app.py
 
-### Supported Education Detection
+The test module validates:
 
-- B.E.
-- B.Tech
-- M.Tech
-- M.Sc
-- BCA
-- MCA
-- MBA
-- Diploma
-- HSC
-- SSLC
-
----
-
-## 🤖 AI Resume Scoring
-
-Each resume is compared against the Job Description using TF-IDF Vectorization and Cosine Similarity.
-
-### Composite Score Formula
-
-```
-Composite Score =
-(Content Match × TF-IDF Weight)
-+ (Skill Match × Skill Weight)
-+ (Experience Match × Experience Weight)
-```
-
-### Default Weight Distribution
-
-| Metric | Weight |
-|---------|--------|
-| TF-IDF Content Match | 50% |
-| Skill Match | 40% |
-| Experience Match | 10% |
-
----
-
-## 🎯 Skill Gap Analysis
-
-The system automatically identifies:
-
-- ✅ Matched Skills
-- ❌ Missing Skills
-- ➕ Additional Skills
-
----
-
-## 🏆 Candidate Ranking
-
-Candidates are ranked based
+Resume Parsing
+Entity Extraction
+AI Scoring Engine
+Candidate Ranking
+Visualization Components
+📈 Workflow
+Resume Upload
+      │
+      ▼
+Document Parsing
+      │
+      ▼
+Information Extraction
+      │
+      ▼
+Job Description Analysis
+      │
+      ▼
+TF-IDF Similarity
+      │
+      ▼
+Skill Matching
+      │
+      ▼
+Experience Evaluation
+      │
+      ▼
+Composite Score Generation
+      │
+      ▼
+Candidate Ranking
+      │
+      ▼
+Analytics & Export
