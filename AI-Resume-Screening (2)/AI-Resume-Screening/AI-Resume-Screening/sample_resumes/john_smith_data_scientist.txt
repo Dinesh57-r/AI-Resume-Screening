@@ -1,0 +1,31 @@
+John Smith
+john.smith@email.com | +1-555-123-4567 | linkedin.com/in/johnsmith | github.com/johnsmith
+
+SUMMARY
+Experienced Data Scientist with 6 years of experience in Machine Learning, Deep Learning, and NLP. 
+Passionate about building scalable AI solutions and data-driven products.
+
+EXPERIENCE
+Senior Data Scientist | TechCorp Inc. | 2020 - Present
+- Built production ML models using Python, TensorFlow, and PyTorch
+- Developed NLP pipelines using BERT and Transformers
+- Deployed models on AWS using Docker and Kubernetes
+- Used Apache Spark and Kafka for data engineering pipelines
+- Improved model accuracy by 35% using XGBoost and feature engineering
+
+Data Scientist | DataFlow Ltd. | 2018 - 2020  
+- Analysed large datasets with Pandas, NumPy, and SQL
+- Created data visualisations using Plotly and Tableau
+- Implemented A/B Testing frameworks
+- Worked with MongoDB, PostgreSQL, and Redis
+
+EDUCATION
+Master of Science in Computer Science | Stanford University | 2018
+Bachelor of Engineering in Information Technology | MIT | 2016
+
+SKILLS
+Python, Machine Learning, Deep Learning, TensorFlow, PyTorch, Scikit-learn, Keras,
+NLP, BERT, Transformers, XGBoost, LightGBM, Computer Vision, OpenCV,
+SQL, PostgreSQL, MongoDB, Apache Spark, Kafka, Docker, Kubernetes, AWS, GCP,
+Pandas, NumPy, Plotly, Tableau, Statistics, A/B Testing, Feature Engineering,
+Git, GitHub, Jupyter, Linux, Agile, Scrum

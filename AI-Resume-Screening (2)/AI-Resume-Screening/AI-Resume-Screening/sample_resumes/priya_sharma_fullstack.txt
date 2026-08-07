@@ -1,0 +1,27 @@
+Priya Sharma
+priya.sharma@gmail.com | +91-9876543210 | linkedin.com/in/priyasharma
+
+PROFESSIONAL SUMMARY
+Full Stack Developer with 3 years of experience building modern web applications.
+Strong expertise in React, Node.js, and cloud technologies.
+
+WORK EXPERIENCE
+Full Stack Developer | StartupXYZ | 2021 - Present
+- Developed responsive web apps using React, TypeScript, and Next.js
+- Built REST API backends with Node.js and Express.js
+- Managed SQL and MongoDB databases
+- Deployed applications on AWS using Docker and CI/CD pipelines
+- Implemented GraphQL APIs and WebSocket real-time features
+
+Junior Developer | WebSolutions | 2020 - 2021
+- Worked on Angular and Vue.js frontend applications
+- Wrote unit tests and maintained GitHub repositories
+- Used Jira and Agile methodologies
+
+EDUCATION
+Bachelor of Technology in Computer Science | IIT Delhi | 2020
+
+TECHNICAL SKILLS
+JavaScript, TypeScript, React, Next.js, Angular, Vue.js, Node.js, Express.js,
+REST API, GraphQL, SQL, MySQL, MongoDB, Redis, Docker, Kubernetes, AWS,
+Git, GitHub, CI/CD, Jenkins, GitHub Actions, Agile, Scrum, Figma, Postman
