@@ -1,140 +1,135 @@
-# 🤖 AI Resume Screening App — Streamlit
+# 🤖 AI Resume Screening & Candidate Ranking System
 
-A **fully-featured, AI-powered Resume Screening & Candidate Ranking Application** built with **Streamlit**, **scikit-learn**, **pdfplumber**, **pypdf**, and **Plotly**.
-
----
-
-## 📌 Implementation Plan & Overview
-
-This project provides an automated, intelligent HR screening system. It parses bulk resumes in multiple formats, extracts key candidate entities using NLP, scores candidates against job descriptions using TF-IDF vectorization and weighted composite matching, and presents actionable insights via a premium animated dark UI.
-
-### 🛠️ Tech Stack
-- **Frontend / UI**: Streamlit with custom dark glassmorphism CSS theming
-- **NLP / AI Engine**: `scikit-learn` (TF-IDF vectorizer + Cosine Similarity), `nltk`, RegEx entity extractors
-- **Dual-Engine Document Parsers**: `pdfplumber` + `pypdf` (PDF fallback engine), `python-docx` (DOCX & tables), plain text (`TXT`)
-- **Analytics & Visualizations**: `Plotly` (interactive dark-theme charts), `pandas` (data tables & exports)
-- **Data Export & Storage**: CSV and JSON export modules, Streamlit session state management
+A **fully-featured AI-powered Resume Screening & Candidate Ranking Application** built using **Streamlit**, **Scikit-learn**, **NLTK**, **pdfplumber**, **PyPDF**, **python-docx**, and **Plotly**. The application automates resume screening by extracting candidate information, matching resumes against job descriptions, ranking applicants, and providing interactive analytics.
 
 ---
 
-## ✨ Features & Functional Highlights
+# 📌 Project Overview
 
-| Feature | Description |
-|---|---|
-| 📤 **Bulk Resume Upload** | Drag & drop multiple `PDF`, `DOCX`, and `TXT` resume files simultaneously |
-| 📄 **Dual-Engine Parsing** | High-precision text extraction with `pdfplumber` + `pypdf` fallback for layout-heavy PDFs |
-| 🧠 **Smart NLP Entity Extraction** | Extracts Candidate Name, Email, Phone Number, 100+ Technical & Soft Skills, Education Degrees, Experience (years/date-ranges), Profile Summaries, and Projects |
-| 🤖 **AI TF-IDF Scoring** | TF-IDF (1-2 n-grams) cosine similarity scoring between candidate resumes and Job Descriptions |
-| 🎯 **Skill Gap Analysis** | Automatic comparison generating **Matched Skills**, **Missing Skills**, and **Extra Skills** lists |
-| 🏆 **Ranked Leaderboard** | Sortable candidate ranking table with tier badges (🏆 Excellent, ✅ Good, ⚠️ Average, ❌ Below Average) |
-| 👤 **Detailed Candidate Drill-down** | Interactive profile viewer with Contact Cards, Education, Experience, Skill Gap Sunbursts, Score Breakdown, and Raw Text |
-| 📊 **Analytics Dashboard** | Score Distribution Histogram, Skill Frequency Chart, Keyword Coverage Bar Chart, Experience Pie Chart, Radar Comparison, and Summary Dataframes |
-| 💾 **Multi-Format Export** | One-click export of complete screening evaluation to **CSV** and **JSON** |
+The AI Resume Screening System is designed to simplify the recruitment process by automatically analyzing resumes, extracting important candidate information, calculating job relevance scores, and ranking candidates based on AI-powered matching algorithms.
+
+The application supports bulk resume uploads, multiple document formats, NLP-based entity extraction, TF-IDF similarity scoring, skill gap analysis, and interactive dashboards for HR professionals.
 
 ---
 
-## 🗂️ Project Structure & Module Description
+# 🛠️ Tech Stack
 
-```
-f:\AI-Resume-Screening (2)\AI-Resume-Screening\AI-Resume-Screening\
-├── app.py                  # Main Streamlit app (Routing, UI layout, Custom CSS)
-├── requirements.txt        # Core dependencies list
-├── README.md               # Complete project documentation & guide
-├── test_app.py             # End-to-end unit test & validation script
-├── sample_resumes/         # Sample candidate resumes for testing
-│   ├── john_smith_data_scientist.txt
-│   ├── priya_sharma_fullstack.txt
-│   └── alex_johnson_ml_junior.txt
-└── utils/
-    ├── __init__.py         # Package initialization
-    ├── parser.py           # Dual-engine PDF (pdfplumber + pypdf), DOCX, and TXT parser
-    ├── extractor.py        # NLP entity extraction (Name, Email, Phone, Skills, Education, Exp, Projects)
-    ├── scorer.py           # TF-IDF Cosine Similarity & Weighted Composite Scoring Engine
-    └── visualizer.py       # Plotly chart factory (6 dark-themed interactive charts)
-```
-
-### 📄 Key Files Explained
-
-1. **`app.py`**: Controls Streamlit navigation across 5 primary pages:
-   - **Upload Resumes**: Upload drag & drop files + candidate preview cards.
-   - **Job Description**: Text area input, sample templates (Data Scientist, Full Stack, ML Engineer, DevOps), weight sliders, and experience requirements.
-   - **Results & Ranking**: Interactive leaderboard, search bar, tier filters, and detailed candidate modal drill-downs.
-   - **Analytics Dashboard**: Comprehensive chart gallery and radar comparison slider.
-   - **Export Data**: CSV and JSON download triggers with interactive preview tables.
-
-2. **`utils/parser.py`**:
-   - `parse_pdf()`: Extracts text using `pdfplumber` with layout support; falls back to `pypdf` if needed.
-   - `parse_docx()`: Extracts paragraphs and embedded tables from Microsoft Word documents.
-   - `parse_txt()`: Decodes UTF-8 plain text files.
-
-3. **`utils/extractor.py`**:
-   - `SKILLS_DB`: Dictionary of 100+ technologies across AI/ML, Web, Cloud, Databases, DevOps, Data Engineering, and Soft Skills.
-   - `extract_name()`: Cleans and formats candidate names into Title Case.
-   - `extract_email()` & `extract_phone()`: Regex contact detail matching.
-   - `extract_education()`: Captures degrees (`B.E.`, `B.Tech`, `M.Tech`, `M.Sc`, `BCA`, `MCA`, `MBA`, `Diploma`, `HSC`, `SSLC`), colleges, universities, and CGPA/GPA scores.
-   - `extract_experience_years()`: Computes total years explicitly or from date ranges (`2021 - 2025`).
-   - `extract_linkedin()` & `extract_github()`: Social profile link extractors.
-   - `extract_summary()` & `extract_projects()`: Extracts candidate summary and key academic/professional projects.
-
-4. **`utils/scorer.py`**:
-   - `compute_tfidf_score()`: Calculates n-gram TF-IDF cosine similarity between resume and JD text.
-   - `skill_gap_analysis()`: Computes matched vs missing skill sets without duplicate case variations.
-   - `score_resume()`: Generates composite score based on customizable weights:
-     $$\text{Composite Score} = (w_{\text{tfidf}} \times \text{TF-IDF}) + (w_{\text{skill}} \times \text{Skill Match}) + (w_{\text{exp}} \times \text{Experience Match})$$
-   - `rank_candidates()`: Ranks candidates in descending order and assigns tier badges.
-
-5. **`utils/visualizer.py`**:
-   - `score_bar_chart()`: Horizontal candidate ranking bar chart.
-   - `score_distribution()`: Score frequency histogram.
-   - `skill_frequency_chart()`: Top skills bar chart across all resumes.
-   - `skill_gap_sunburst()`: Sunburst hierarchy chart of matched vs missing skills per candidate.
-   - `radar_chart()`: Polar radar comparison chart across scoring dimensions.
-   - `experience_distribution()`: Experience breakdown pie chart.
+| Category | Technologies |
+|----------|--------------|
+| **Frontend** | Streamlit, HTML, CSS |
+| **Machine Learning** | Scikit-learn, NLTK |
+| **Document Parsing** | pdfplumber, PyPDF, python-docx |
+| **Data Processing** | Pandas, NumPy |
+| **Visualization** | Plotly |
+| **Storage & Export** | CSV, JSON |
 
 ---
 
-## ⚙️ How Scoring Works
+# ✨ Features
 
-The default scoring model allocates weights as follows (configurable in UI):
-
-| Metric | Weight | Description |
-|---|---|---|
-| **Content Match (TF-IDF)** | 50% | Cosine similarity between TF-IDF text vectors of resume and JD |
-| **Skill Match** | 40% | Percentage of extracted JD keywords present in the candidate's resume |
-| **Experience Match** | 10% | Candidate experience relative to required minimum years |
-
----
-
-## 🧪 Testing & Verification
-
-Run the automated test script to verify all parser, extractor, scorer, and visualizer functions:
-
-```bash
-python test_app.py
-```
+- 📤 Bulk Resume Upload (PDF, DOCX, TXT)
+- 📄 Dual PDF Parsing (pdfplumber + PyPDF fallback)
+- 🧠 NLP-based Candidate Information Extraction
+- 🤖 TF-IDF & Cosine Similarity Resume Scoring
+- 🎯 Skill Gap Analysis
+- 🏆 Candidate Ranking System
+- 👤 Detailed Candidate Profile Viewer
+- 📊 Interactive Analytics Dashboard
+- 💾 Export Results to CSV & JSON
 
 ---
 
-## 🚀 Quick Start & Commands to Run
+# 📋 Functional Modules
 
-### 1. Navigate to Project Directory
+## 📤 Resume Upload
 
-```powershell
-cd "f:\AI-Resume-Screening (2)\AI-Resume-Screening\AI-Resume-Screening"
+- Upload multiple resumes simultaneously
+- Supports PDF, DOCX, and TXT formats
+- Preview uploaded candidate resumes
+
+---
+
+## 📄 Resume Parser
+
+The parser extracts text from different document formats.
+
+### Supported Formats
+
+- PDF
+- DOCX
+- TXT
+
+### PDF Parsing
+
+- Primary Engine: **pdfplumber**
+- Fallback Engine: **PyPDF**
+
+---
+
+## 🧠 NLP Entity Extraction
+
+Automatically extracts:
+
+- Candidate Name
+- Email Address
+- Phone Number
+- LinkedIn Profile
+- GitHub Profile
+- Technical Skills
+- Soft Skills
+- Education Details
+- Experience
+- Projects
+- Professional Summary
+
+### Supported Education Detection
+
+- B.E.
+- B.Tech
+- M.Tech
+- M.Sc
+- BCA
+- MCA
+- MBA
+- Diploma
+- HSC
+- SSLC
+
+---
+
+## 🤖 AI Resume Scoring
+
+Each resume is compared against the Job Description using TF-IDF Vectorization and Cosine Similarity.
+
+### Composite Score Formula
+
+```
+Composite Score =
+(Content Match × TF-IDF Weight)
++ (Skill Match × Skill Weight)
++ (Experience Match × Experience Weight)
 ```
 
-### 2. Install Dependencies
+### Default Weight Distribution
 
-```powershell
-pip install -r requirements.txt
-```
+| Metric | Weight |
+|---------|--------|
+| TF-IDF Content Match | 50% |
+| Skill Match | 40% |
+| Experience Match | 10% |
 
-### 3. Run Streamlit Application
+---
 
-```powershell
-streamlit run app.py
-```
+## 🎯 Skill Gap Analysis
 
-### 4. Open in Browser
+The system automatically identifies:
 
-Navigate to **`http://localhost:8501`** in your browser.
+- ✅ Matched Skills
+- ❌ Missing Skills
+- ➕ Additional Skills
+
+---
+
+## 🏆 Candidate Ranking
+
+Candidates are ranked based
